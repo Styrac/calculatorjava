@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<button onclick="changeValue('1')">1</button>
+<button onclick="changeValue('2')">2</button>
+<button onclick="changeValue('3')">3</button>
+<button onclick="changeValue('4')">4</button>
+<button onclick="changeValue('5')">5</button>
+<button onclick="changeValue('6')">6</button>
+<button onclick="changeValue('7')">7</button>
+<button onclick="changeValue('8')">8</button>
+<button onclick="changeValue('9')">9</button>
+<button onclick="changeOperation(0)">+</button>
+<button onclick="changeOperation(1)">-</button>
+<button onclick="changeOperation(2)">*</button>
+<button onclick="changeOperation(3)">/</button>
+<button onclick="calculation()">=</button>
+
+<p id="value"></p>
+<p id="operation"></p>
+<p id="value2"></p>
+<p id="calc"></p>
+
+<script>
+
+let num1 = 0;
+let num2 = 0;
+let operation = 0;
+let calc = 0;
+let numberOrder = 0;
+let operSign = "+";
+let oper1 = 0;
+let oper2 = 0;
+let oper1Comp = 0;
+let oper2Comp = 0;
+
+function calculation() {
+switch(operation) {
+    case 0:
+        //add
+        calc = (oper1Comp + oper2Comp);
+        break;
+    case 1:
+        //sub
+        calc = (oper1Comp - oper2Comp);
+        break;
+    case 2:
+        //mult
+        calc = (oper1Comp * oper2Comp);
+        break;
+    case 3:
+        //div
+        calc = (oper1Comp / oper2Comp);
+        break;
+}
+    document.getElementById("calc").innerHTML = calc;
+    numberOrder = 0;
+    num1 = calc
+    num2 = 0
+    oper1Comp = calc
+}
+
+function changeValue(number) {
+	if (numberOrder === 0) {
+    	if (oper1Comp === calc) {
+        num1 = 0
+        oper1Comp = 0
+        } else {}
+    	oper1 = num1 + number;
+        num1 = oper1;
+        oper1Comp = (parseInt(oper1));
+    	document.getElementById("value").innerHTML = oper1Comp;
+        document.getElementById("operation").innerHTML = " ";
+        document.getElementById("value2").innerHTML = " ";
+        document.getElementById("calc").innerHTML = " ";
+	} else {
+    	oper2 = num2 + number;
+        num2 = oper2;
+        oper2Comp = (parseInt(oper2));
+        document.getElementById("value2").innerHTML = oper2Comp;
+    }
+}
+
+function changeOperation(number) {
+	operation = number;
+    switch(operation) {
+    	case 0:
+        	operSign = "+"
+            break;
+        case 1:
+        	operSign = "-"
+            break;
+        case 2:
+        	operSign = "*"
+            break;
+        case 3:
+        	operSign = "/"
+            break;
+    }
+    document.getElementById("value").innerHTML = oper1Comp;
+    document.getElementById("operation").innerHTML = operSign;
+    document.getElementById("value2").innerHTML = " ";
+    document.getElementById("calc").innerHTML = " ";
+    numberOrder = 1
+}
+
+</script>
+
+</body>
+</html>
